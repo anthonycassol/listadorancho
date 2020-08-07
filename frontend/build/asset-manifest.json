@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "./static/css/main.3651fb55.chunk.css",
+    "main.js": "./static/js/main.c6af3b09.chunk.js",
+    "main.js.map": "./static/js/main.c6af3b09.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.6b6c6df9.js",
+    "runtime-main.js.map": "./static/js/runtime-main.6b6c6df9.js.map",
+    "static/css/2.8837e4f0.chunk.css": "./static/css/2.8837e4f0.chunk.css",
+    "static/js/2.c18ebae7.chunk.js": "./static/js/2.c18ebae7.chunk.js",
+    "static/js/2.c18ebae7.chunk.js.map": "./static/js/2.c18ebae7.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.a5e8ad41a63491709044ecd6e7662907.js": "./precache-manifest.a5e8ad41a63491709044ecd6e7662907.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.8837e4f0.chunk.css.map": "./static/css/2.8837e4f0.chunk.css.map",
+    "static/css/main.3651fb55.chunk.css.map": "./static/css/main.3651fb55.chunk.css.map",
+    "static/js/2.c18ebae7.chunk.js.LICENSE.txt": "./static/js/2.c18ebae7.chunk.js.LICENSE.txt",
+    "static/media/logo-cordova.png": "./static/media/logo-cordova.2d401fa2.png",
+    "static/media/logo.svg": "./static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6b6c6df9.js",
+    "static/css/2.8837e4f0.chunk.css",
+    "static/js/2.c18ebae7.chunk.js",
+    "static/css/main.3651fb55.chunk.css",
+    "static/js/main.c6af3b09.chunk.js"
+  ]
+}
