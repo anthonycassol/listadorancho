@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
 import api from '../../services/api'
@@ -13,6 +13,8 @@ export default function Registrar() {
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    const history = useHistory();
     
 
     async function handleRegistro(e){
@@ -28,8 +30,8 @@ export default function Registrar() {
         try{
             const resposta = await api.post('usuario', dados);
             alert(`Usuário cadastrado com sucesso, Olá ${resposta.data.nome}`);
-        }
-        catch (err){
+            history.push('/');
+        }catch (err){
             alert('Erro, tente novamente');
         }
     }

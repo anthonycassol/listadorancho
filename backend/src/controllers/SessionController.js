@@ -20,15 +20,14 @@ module.exports = {
             }
 
             if(!rows[0]){
-                return response.json({
-                    retorno: "Email ou senha incorretas"
+                return response.status(400).json({
+                    error: 'Usuário ou senha incorretos'
                 });
             }
-            else{
-                return response.json({
-                    rows
-                });
-            }
+            
+            return response.json({
+                rows
+            });
         });
     }
 };
