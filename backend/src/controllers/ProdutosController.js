@@ -17,11 +17,14 @@ module.exports = {
 
         const idlistas = request.query.lista;
 
-        const query = "SELECT * FROM produtos WHERE idlistas = ? and status != 0 LIMIT 5 OFFSET ?";
+        const query = "SELECT * FROM produtos WHERE idlistas = ? and status != 0";
+
+        //LIMIT 5 OFFSET ?
+        //, (page-1)*5
 
         const query2 = "SELECT COUNT(*) as count FROM produtos";
 
-        await db.all(query, [idlistas, (page-1)*5], (err, rows) => {
+        await db.all(query, [idlistas], (err, rows) => {
             if(err){
                 console.log(err.message);
                 return next(err);
@@ -58,5 +61,53 @@ module.exports = {
         return response.json({
             nome
         });
+    },
+
+    put(request, response){
+        var { idprodutos, valor, string, status } = request.body;
+        //const idusuarios = request.headers.authorization;
+
+        if(string == 'preco'){
+            if(!valor){
+                valor = 0;
+            }
+
+            console.log(valor);
+
+            const query = "UPDATE produtos SET preco = ? WHERE idprodutos = ?";
+
+            db.run(query, [valor, idprodutos], function(err) {
+                if(err) return console.log(err.message);
+            });
+
+        }
+
+        else if (string == 'quantidade'){
+
+            if(!valor) {
+                valor = 0;
+            }
+                
+            const query = "UPDATE produtos SET quantidade = ? WHERE idprodutos = ?";
+
+            db.run(query, [valor, idprodutos], function(err) {
+                if(err) return console.log(err.message);
+            });
+            
+        }
+
+        else if (string == 'status'){
+            var query = "UPDATE produtos SET status = 2 WHERE idprodutos = ?";
+
+            if(status == 2){
+                query = "UPDATE produtos SET status = 1 WHERE idprodutos = ?";
+            }
+            
+            db.run(query, [idprodutos], function(err) {
+                if(err) return console.log(err.message);
+            });
+        }
+
+        return response.status(204).send();
     }
 };

@@ -37,7 +37,7 @@ export default function Registrar() {
     }
 
     return (
-        <div className="registrar-container">
+        <div className="form-container">
             <div className="content">
                 <section>
                     <img src={logoImg} alt="Lista do Rancho" style={{ width: 150}}/>

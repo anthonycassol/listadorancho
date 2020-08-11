@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; //Para usar na troca de página (ao invés de usar a href usar link to)
+import { Link, useHistory } from 'react-router-dom'; //Para usar na troca de página (ao invés de usar a href usar link to)
 import { FaSignInAlt } from 'react-icons/fa';
 
 import api from '../../services/api';
@@ -14,6 +14,8 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
+    const history = useHistory();
+
     async function handleLogin(e){
         e.preventDefault();
 
@@ -24,7 +26,12 @@ export default function Login() {
 
         try{
             const resposta = await api.post('session', dados);
-            alert('Seja bem vindo ' + resposta.data.rows[0].nome);
+
+            localStorage.setItem('idusuarios', resposta.data.rows[0].idusuarios);
+            localStorage.setItem('nome', resposta.data.rows[0].nome);
+            
+
+            history.push('/listas');
         } catch (err){
             alert('Falha no Login, tente novamente.');
         }

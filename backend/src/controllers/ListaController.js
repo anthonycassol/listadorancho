@@ -11,7 +11,7 @@ module.exports = {
     async index(request, response, next){
         const idusuarios = request.headers.authorization;   
 
-        const query = "SELECT LIS.idlistas, LIS.nome, LIS.descricao FROM usuarios_listas as USUL JOIN listas as LIS ON USUL.idlistas = LIS.idlistas WHERE status = 1 AND idusuarios = ?";
+        const query = "SELECT LIS.idlistas, LIS.nome, LIS.descricao FROM usuarios_listas as USUL JOIN listas as LIS ON USUL.idlistas = LIS.idlistas WHERE LIS.status = 1 AND USUL.idusuarios = ?";
 
         await db.all(query, [idusuarios], (err, rows) => {
             if(err){
@@ -46,5 +46,18 @@ module.exports = {
             nome
         });
     
+    },
+
+    put(request, response){
+        const { idlistas } = request.params;
+        //const idusuarios = request.headers.authorization;
+
+        const query = "UPDATE listas SET status = -1 WHERE idlistas = ?";
+
+        db.run(query, [idlistas], function(err) {
+            if(err) return console.log(err.message);
+        });
+
+        return response.status(204).send();
     }
 };

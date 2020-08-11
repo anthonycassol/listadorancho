@@ -13,8 +13,11 @@ routes.post('/usuario', UsuarioController.create);
 
 routes.post('/listas', ListaController.create);
 routes.get('/listas', ListaController.index);
+routes.put('/listas/:idlistas', ListaController.put);
+
 
 routes.post('/produtos', ProdutosController.create);
 routes.get('/produtos', ProdutosController.index);
+routes.put('/produtos', ProdutosController.put);
 
 module.exports = routes;
