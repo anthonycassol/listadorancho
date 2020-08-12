@@ -10,6 +10,7 @@ import Registrar from "./pages/Registrar";
 import Listas from "./pages/Listas";
 import NovaLista from "./pages/NovaLista";
 import Produtos from "./pages/Produtos";
+import NovoProduto from "./pages/NovoProduto";
 
 export default function Rotes() {
   return (
@@ -18,8 +19,9 @@ export default function Rotes() {
         <Route path="/" exact component={Login}></Route>
         <Route path="/registrar" component={Registrar}></Route>
         <Route path="/listas" component={Listas}></Route>
-        <Route path="/novo" component={NovaLista}></Route>
+        <Route path="/novalista" component={NovaLista}></Route>
         <Route path="/produtos" component={Produtos}></Route>
+        <Route path="/novoproduto" component={NovoProduto}></Route>
       </Switch>
     </Router>
   );

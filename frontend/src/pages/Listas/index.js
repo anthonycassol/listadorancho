@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FaPowerOff, FaTrashAlt } from 'react-icons/fa';
 
 import api from '../../services/api'
@@ -55,8 +55,7 @@ export default function Listas() {
             <header>
                 <img src={logoImg} alt="Lista do Rancho" width="100"/>
                 <span>Seja Bem Vindo, {nome}</span>
-
-                <Link className="botao" to="/novo">Cadastrar Lista</Link>
+                
                 <button onClick={handleLogout} type="button">
                     <FaPowerOff size={18} color="#164897"/>
                 </button>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaPowerOff } from 'react-icons/fa';
+import { FaPowerOff, FaPlus } from 'react-icons/fa';
 
 import api from '../../services/api'
 
@@ -12,9 +12,7 @@ export default function Produtos() {
     const [produtos, setProdutos] = useState([]);
     const history = useHistory();
 
-    var total;
-
-    const idusuarios = localStorage.getItem('idusuarios');
+    //const idusuarios = localStorage.getItem('idusuarios');
     const nome = localStorage.getItem('nome');
     const lista = localStorage.getItem('lista');
     //localStorage.removeItem('lista');
@@ -79,8 +77,7 @@ export default function Produtos() {
             <header>
                 <img src={logoImg} alt="Lista do Rancho" width="100"/>
                 <span>Seja Bem Vindo, {nome}</span>
-
-                <Link className="botao" to="/novo">Cadastrar Lista</Link>
+                
                 <button onClick={handleLogout} type="button">
                     <FaPowerOff size={18} color="#164897"/>
                 </button>
@@ -98,9 +95,7 @@ export default function Produtos() {
                         <th>STATUS</th>
                     </tr>
                 </thead>
-
                 <tbody>
-                {total = 0}
                 {produtos.map( produto => ( 
                     <tr key={produto.idprodutos}>
                         <td>{produto.nome}</td>
@@ -124,13 +119,15 @@ export default function Produtos() {
                     </tr>
                 ),)}
                 </tbody>
-
                 <tfoot>
-                    <tr>
-                        {total}
-                    </tr>
                 </tfoot>
             </table>
+
+            <Link class="botao-mais" to="novoproduto"> 
+                <button>
+                    <FaPlus size={40} color="#164897"/>
+                </button>
+            </Link>
         </div>
     );
 }

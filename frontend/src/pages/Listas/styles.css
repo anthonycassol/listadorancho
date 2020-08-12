@@ -15,20 +15,13 @@
     margin-left: 24px;
 }
 
-.listas-container header a {
-    text-decoration: none;
-    width: 200px;
-    margin-left: auto;
-    margin-top: 0;
-}
-
 .listas-container header button {
     height: 60px;
     width: 60px;
     border-radius: 4px;
     border: 1px solid #dcdce6;
     background:  transparent;
-    margin-left: 16px;
+    margin-left: auto;
     transition: border-color 0.2s;
 }
 

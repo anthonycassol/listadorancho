@@ -28,7 +28,6 @@ form input {
     border: 1px solid #dcdce6;
     border-radius: 8px;
     padding: 0 24px;
-    margin-left: 25px;
 }
 
 .botao{
@@ -74,10 +73,8 @@ form input {
 
 .form-container{
     width: 100%;
-    max-width: 1120px;
-    height: 100vh;
+    height: 80vh;
     margin: 0 auto;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,30 +86,13 @@ form input {
     background: #f0f0f5;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.form-container .content section{
-    width: 100%;
-    max-width: 380px;
-}
-
-.form-container .content section h1{
-    margin: 64px 0 32px;
-    font-size: 32px;
-}
-
-.form-container .content section p{
-    font-size: 18;
-    color: #737380;
-    line-height: 32px;
-}
-
 .form-container .content form{
     width: 100%;
-    max-width: 450px;
+    max-width: 1;
 }
 
 .form-container .content form input{

@@ -48,13 +48,13 @@ module.exports = {
     },
 
     create(request, response){
-        const {nome, descricao, idlistas} = request.body;
+        const {nome, descricao, idlistas, quantidade, preco} = request.body;
 
         idusuarios = request.headers.authorization;
 
-        const query = "INSERT INTO produtos (nome, descricao, idlistas) VALUES (?, ?, ?)";
+        const query = "INSERT INTO produtos (nome, descricao, idlistas, quantidade, preco) VALUES (?, ?, ?, ?, ?)";
 
-        db.run(query, [nome, descricao, idlistas], function(err) {
+        db.run(query, [nome, descricao, idlistas, quantidade, preco], function(err) {
             if(err) return console.log(err.message);
         });
 
