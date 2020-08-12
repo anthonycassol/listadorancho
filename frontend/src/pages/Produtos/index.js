@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaPowerOff, FaPlus, FaMinus } from 'react-icons/fa';
+import { FaPowerOff, FaPlus, FaMinus, FaClipboardCheck } from 'react-icons/fa';
 
 import api from '../../services/api'
 
@@ -14,14 +14,14 @@ export default function Produtos() {
 
     //const idusuarios = localStorage.getItem('idusuarios');
     const nome = localStorage.getItem('nome');
-    const lista = localStorage.getItem('lista');
+    const idlistas = localStorage.getItem('lista');
     //localStorage.removeItem('lista');
 
     useEffect(() => {
         let mounted = true; //usada para verificar as funcoes assincronas
         api.get('produtos', {
             params: {
-               lista: lista
+               lista: idlistas
             }
         }).then(response => {
             if(mounted){
@@ -30,13 +30,56 @@ export default function Produtos() {
         })
 
         return () => mounted = false;
-    }, [produtos, lista]);
+    }, [produtos, idlistas]);
+
+    let produtosToRender;
+    if (produtos) {
+        produtosToRender = 
+        produtos.map( produto =>
+            <tr key={produto.idprodutos}>
+                <td>{produto.nome}</td>
+                <td>
+                    <input
+                        type="number"
+                        defaultValue={produto.quantidade}
+                        onChange={(e) => handleAlterar(produto.idprodutos, e, 'quantidade', produto.status)}
+                    />
+                </td>
+                <td>
+                    <input 
+                        type="number"
+                        defaultValue={produto.preco}
+                        onChange={(e) => handleAlterar(produto.idprodutos, e, 'preco', produto.status)}
+                    />      
+                </td>
+
+                {pegarBotao(produto.status, produto.idprodutos)}
+            </tr>
+        )
+    }
+    else{
+        produtosToRender = "Adicione algum produto";
+    }
 
     
     function handleLogout () {
         localStorage.clear();
         history.push('/');
     }   
+
+    async function handleConcluirLista(idlistas, string) {
+        const dados = ({
+            idlistas,
+            string
+        })
+
+        try{
+            await api.put('listas', dados);
+            history.push('/listas');
+        } catch{
+            alert('Erro ao excluir lista. Tente novamente!');
+        }
+    }
 
     async function handleAlterar(idprodutos, e, string, status) {
         const valor = e.target.value
@@ -90,8 +133,14 @@ export default function Produtos() {
                     <FaPowerOff size={18} color="#164897"/>
                 </button>
             </header>
+            
+            <div className="cabecalho">
+                <h1>Produtos Ativos</h1>
 
-            <h1>Produtos Ativos</h1>
+                <button onClick={(e) => {e.stopPropagation(); handleConcluirLista(idlistas, 'alterar')}} className="botao-concluir" type="button">
+                    <FaClipboardCheck  size={30} color="#164897"/>
+                </button> 
+            </div>
 
             <div className="content">
                 <table>
@@ -104,27 +153,7 @@ export default function Produtos() {
                         </tr>
                     </thead>
                     <tbody>
-                    {produtos.map( produto => ( 
-                        <tr key={produto.idprodutos}>
-                            <td>{produto.nome} <small> {produto.descricao} </small></td>
-                            <td>
-                                <input
-                                    type="number"
-                                    defaultValue={produto.quantidade}
-                                    onChange={(e) => handleAlterar(produto.idprodutos, e, 'quantidade', produto.status)}
-                                />
-                            </td>
-                            <td>
-                                <input 
-                                    type="number"
-                                    defaultValue={produto.preco}
-                                    onChange={(e) => handleAlterar(produto.idprodutos, e, 'preco', produto.status)}
-                                />      
-                            </td>
-
-                            {pegarBotao(produto.status, produto.idprodutos)}
-                        </tr>
-                    ),)}
+                        {produtosToRender}
                     </tbody>
                     <tfoot>
                     </tfoot>

@@ -24,19 +24,18 @@ export default function Listas() {
         }).then(response => {
             setListas(response.data.rows);
         })
-    }, [idusuarios]);
+    }, [listas]);
 
-    async function handleDeletarLista(idlistas) {
+    async function handleExcluirLista(idlistas, string) {
+        const dados = ({
+            idlistas,
+            string
+        })
+
         try{
-            await api.put(`listas/${idlistas}`, {
-                headers: {
-                    Authorization: idusuarios
-                }
-            });
-
-            setListas(listas.filter(lista => lista.idlistas !== idlistas))
+            await api.put('listas', dados);
         } catch{
-            alert('Erro ao deletar Lista. Tente novamente.');
+            alert('Erro ao excluir lista. Tente novamente!');
         }
     }
 
@@ -75,7 +74,7 @@ export default function Listas() {
                     <p>{lista.descricao}</p>
 
                     <button 
-                        onClick={(e) => {e.stopPropagation(); handleDeletarLista(lista.idlistas)}} 
+                        onClick={(e) => {e.stopPropagation(); handleExcluirLista(lista.idlistas, 'excluir')}} 
                         type="button">
                         <FaTrashAlt size={20} color="red"></FaTrashAlt>
                     </button>

@@ -49,10 +49,16 @@ module.exports = {
     },
 
     put(request, response){
-        const { idlistas } = request.params;
+        const { idlistas, string } = request.body;
         //const idusuarios = request.headers.authorization;
+        
 
-        const query = "UPDATE listas SET status = -1 WHERE idlistas = ?";
+        if(string == 'excluir'){
+            query = "UPDATE listas SET status = -1 WHERE idlistas = ?";
+        }
+        else if(string == 'alterar'){
+            query = "UPDATE listas SET status = 2 WHERE idlistas = ?";
+        }
 
         db.run(query, [idlistas], function(err) {
             if(err) return console.log(err.message);
