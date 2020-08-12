@@ -36,7 +36,7 @@
 
 .listas-container ul{
     display: grid;
-    grid-template-columns:  repeat(2, 1fr);
+    grid-template-columns:  repeat(1, 1fr);
     grid-gap: 24px;
     list-style: none;
 }
@@ -79,4 +79,10 @@
     color: #737380;
     line-height: 21px;
     font-size: 16px;
+}
+
+.botao-mais{
+    position: fixed;
+    bottom: 0px;
+    margin-left: 40%; 
 }

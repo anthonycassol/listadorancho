@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FaPowerOff } from 'react-icons/fa';
 
 import api from '../../services/api'
@@ -47,7 +47,9 @@ export default function NovaLista() {
     return (
         <div className="cadastro-container">
             <header>
-                <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                <Link to="/listas">  
+                    <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                </Link>
                 <span>Seja Bem Vindo, {nomeusuario}</span>
                 <button onClick={handleLogout} type="button">
                     <FaPowerOff size={18} color="#164897"/>

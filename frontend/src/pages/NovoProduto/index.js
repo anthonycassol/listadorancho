@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link,  useHistory } from 'react-router-dom';
 import { FaPowerOff } from 'react-icons/fa';
 
 import api from '../../services/api'
@@ -53,7 +53,9 @@ export default function NovoProduto() {
     return (
         <div className="cadastro-container">
             <header>
-                <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                <Link to="/listas">  
+                    <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                </Link>
                 <span>Seja Bem Vindo, {nomeusuario}</span>
                 <button onClick={handleLogout} type="button">
                     <FaPowerOff size={18} color="#164897"/>
@@ -65,26 +67,26 @@ export default function NovoProduto() {
                     <input 
                         type="text" 
                         placeholder="Nome"
-                        value={nome}
+                        defaultValue={nome}
                         onChange={e => setNome(e.target.value)}
                     />
                     <input 
                         type="text" 
                         placeholder="Descrição"
-                        value={descricao}
+                        defaultValue={descricao}
                         onChange={e => setSobrenome(e.target.value)}
                     />
                     <input 
                         type="number" 
                         placeholder="Quantidade"
-                        value={quantidade}
+                        defaultValue={quantidade}
                         step="0.01"
                         onChange={e => setQuantidade(e.target.value)}
                     />
                     <input 
                         type="number" 
                         placeholder="Preço"
-                        value={preco}
+                        defaultValue={preco}
                         step="0.01"
                         onChange={e => setPreco(e.target.value)}
                     />

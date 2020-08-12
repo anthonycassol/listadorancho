@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaPowerOff, FaPlus } from 'react-icons/fa';
+import { FaPowerOff, FaPlus, FaMinus } from 'react-icons/fa';
 
 import api from '../../services/api'
 
@@ -18,15 +18,21 @@ export default function Produtos() {
     //localStorage.removeItem('lista');
 
     useEffect(() => {
+        let mounted = true; //usada para verificar as funcoes assincronas
         api.get('produtos', {
             params: {
                lista: lista
             }
         }).then(response => {
-            setProdutos(response.data.rows);
+            if(mounted){
+                setProdutos(response.data.rows);
+            }
         })
+
+        return () => mounted = false;
     }, [produtos, lista]);
 
+    
     function handleLogout () {
         localStorage.clear();
         history.push('/');
@@ -55,7 +61,7 @@ export default function Produtos() {
             return(
                 <td>
                     <button className='botao-verde' type="submit" onClick={(e) => handleAlterar(idprodutos, e, 'status', status)}>
-                        Confirmar
+                        <FaPlus size={15}/>
                     </button>
                 </td>
                 )
@@ -64,7 +70,7 @@ export default function Produtos() {
             return(
                 <td>
                     <button className='botao-vermelho' type="submit" onClick={(e) => handleAlterar(idprodutos, e, 'status', status)}>
-                        Excluir
+                        <FaMinus size={15}/>
                     </button>
                 </td>
             ) 
@@ -75,7 +81,9 @@ export default function Produtos() {
     return (
         <div className="produtos-container">
             <header>
-                <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                <Link to="/listas">  
+                    <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                </Link>
                 <span>Seja Bem Vindo, {nome}</span>
                 
                 <button onClick={handleLogout} type="button">
@@ -85,49 +93,47 @@ export default function Produtos() {
 
             <h1>Produtos Ativos</h1>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>PRODUTO</th>
-                        <th>DESCRIÇÃO</th>
-                        <th>QUANTIDADE</th>
-                        <th>VALOR</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {produtos.map( produto => ( 
-                    <tr key={produto.idprodutos}>
-                        <td>{produto.nome}</td>
-                        <td>{produto.descricao}</td>
-                        <td>
-                            <input
-                                type="number"
-                                defaultValue={produto.quantidade}
-                                onChange={(e) => handleAlterar(produto.idprodutos, e, 'quantidade', produto.status)}
-                            />
-                        </td>
-                        <td>
-                            <input 
-                                type="number"
-                                defaultValue={produto.preco}
-                                onChange={(e) => handleAlterar(produto.idprodutos, e, 'preco', produto.status)}
-                            />      
-                        </td>
+            <div className="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PRODUTO</th>
+                            <th>QNT</th>
+                            <th>VALOR</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {produtos.map( produto => ( 
+                        <tr key={produto.idprodutos}>
+                            <td>{produto.nome} <small> {produto.descricao} </small></td>
+                            <td>
+                                <input
+                                    type="number"
+                                    defaultValue={produto.quantidade}
+                                    onChange={(e) => handleAlterar(produto.idprodutos, e, 'quantidade', produto.status)}
+                                />
+                            </td>
+                            <td>
+                                <input 
+                                    type="number"
+                                    defaultValue={produto.preco}
+                                    onChange={(e) => handleAlterar(produto.idprodutos, e, 'preco', produto.status)}
+                                />      
+                            </td>
 
-                        {pegarBotao(produto.status, produto.idprodutos)}
-                    </tr>
-                ),)}
-                </tbody>
-                <tfoot>
-                </tfoot>
-            </table>
+                            {pegarBotao(produto.status, produto.idprodutos)}
+                        </tr>
+                    ),)}
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
 
-            <Link class="botao-mais" to="novoproduto"> 
-                <button>
-                    <FaPlus size={40} color="#164897"/>
-                </button>
-            </Link>
+                <Link className="botao-mais" to="novoproduto"> 
+                        <FaPlus size={40} color="#164897"/>
+                </Link>
+            </div>
         </div>
     );
 }

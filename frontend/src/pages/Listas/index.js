@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { FaPowerOff, FaTrashAlt } from 'react-icons/fa';
+import { Link, useHistory } from 'react-router-dom';
+import { FaPowerOff, FaTrashAlt, FaPlus } from 'react-icons/fa';
 
 import api from '../../services/api'
 
@@ -53,7 +53,9 @@ export default function Listas() {
     return (
         <div className="listas-container">
             <header>
-                <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                <Link to="/listas">  
+                    <img src={logoImg} alt="Lista do Rancho" width="100"/>
+                </Link>
                 <span>Seja Bem Vindo, {nome}</span>
                 
                 <button onClick={handleLogout} type="button">
@@ -80,6 +82,10 @@ export default function Listas() {
                 </li>
             ) )}
             </ul>
+
+            <Link className="botao-mais" to="novalista"> 
+                    <FaPlus size={40} color="#164897"/>
+            </Link>
         </div>
     );
 }
