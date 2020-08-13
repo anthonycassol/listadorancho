@@ -9,7 +9,7 @@ let db = new sqlite3.Database('database/db.sqlite', (err) => {
 
 module.exports = {
     async index(request, response, next){
-        const idusuarios = request.headers.authorization;   
+        const idusuarios = 1;
 
         const query = "SELECT LIS.idlistas, LIS.nome, LIS.descricao FROM usuarios_listas as USUL JOIN listas as LIS ON USUL.idlistas = LIS.idlistas WHERE LIS.status = 1 AND USUL.idusuarios = ?";
 
