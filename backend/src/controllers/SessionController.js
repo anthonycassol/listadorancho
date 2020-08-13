@@ -13,8 +13,6 @@ module.exports = {
 
         const query = "SELECT idusuarios, nome, sobrenome, email, status FROM usuarios WHERE email = ? AND senha = ?";
 
-        console.log(query);
-
         db.all(query, [email, senha], (err, rows) => {
             if(err){
                 console.log(err.message);
