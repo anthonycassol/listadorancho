@@ -9,6 +9,9 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
+var porta = process.env.PORT || 3333;
+app.listen(porta);
+
 
 /** 
  * Rota / Recurso
@@ -36,5 +39,3 @@ app.use(routes);
    * Driver: SELECT * FROM ...
    * Query Builder: table('users).select(*).where
    */
-
-app.listen(3333);
