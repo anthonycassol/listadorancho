@@ -12,7 +12,6 @@ app.use(routes);
 var porta = process.env.PORT || 3333;
 app.listen(porta);
 
-
 /** 
  * Rota / Recurso
 */
