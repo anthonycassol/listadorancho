@@ -47,23 +47,27 @@ export default function Registrar() {
                         type="text" 
                         placeholder="Nome"
                         value={nome}
+                        required
                         onChange={e => setNome(e.target.value)}
                     />
                     <input 
                         type="text" 
                         placeholder="Sobrenome"
+                        required
                         value={sobrenome}
                         onChange={e => setSobrenome(e.target.value)}
                     />
                     <input 
                         type="email" 
                         placeholder="Email"
+                        required
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
                     <input 
                         type="password" 
                         placeholder="Senha"
+                        required
                         value={senha}
                         onChange={e => setSenha(e.target.value)}
                     />

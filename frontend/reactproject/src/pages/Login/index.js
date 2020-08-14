@@ -48,12 +48,14 @@ export default function Login() {
                     <input 
                         type="email" 
                         placeholder="Email"
+                        required
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
                     <input 
                         type="password" 
                         placeholder="Senha"
+                        required
                         value={senha}
                         onChange={e => setSenha(e.target.value)}
                     />
