@@ -8,9 +8,16 @@ import './styles.css'
 
 import logoImg from '../../img/loginicon.png';
 
-import shoppingImg from '../../img/shopping.png';
 
 export default function Login() {
+    function echoTest() {
+        window.sqlitePlugin.echoTest(function() {
+            alert('Echo test OK');
+        }, function(error) {
+            alert('Echo test ERROR: ' + error.message);
+        });
+    }
+
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
@@ -66,6 +73,8 @@ export default function Login() {
                         Não tenho cadastro
                     </Link>
                 </form>
+
+                <button onClick={echoTest}>Criar Tabela</button>
             </section>
         </div>
     );

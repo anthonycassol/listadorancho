@@ -27,7 +27,7 @@ module.exports = {
 
     create(request, response){
         const {nome, descricao} = request.body;
-
+        
         idusuarios = request.headers.authorization;
 
         const query = "INSERT INTO listas (nome, descricao) VALUES (?, ?)";

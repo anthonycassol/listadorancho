@@ -23,6 +23,7 @@ export default function Listas() {
             }
         }).then(response => {
             setListas(response.data.rows);
+            //setListas(response.data);
         })
     }, [listas]);
 
